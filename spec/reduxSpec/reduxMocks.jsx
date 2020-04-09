@@ -33,6 +33,7 @@ export var mockYouTubeApi = function (callback) {
     settings.url = 'http://127.0.0.1:8081/spec/data/exampleVideoData.json';
     called.count++;
   });
+  // console.log('hi');
   return called;
 };
 

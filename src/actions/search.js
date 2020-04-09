@@ -5,7 +5,20 @@ import YOUTUBE_API_KEY from '../config/youtube.js';
 
 
 var handleVideoSearch = (q) => {
- 
+  // Return a function that takes dispatch as a parameter
+  // Build object that has key and input q
+  // Invoke searchYoutube with object and dispatch as callback
+  // dispatch currentVideo on data[0]
+  // dispatch videoList on data
+
+  return (dispatch) => {
+    searchYouTube({key: YOUTUBE_API_KEY, query: q}, (data) => {
+      // console.log('data:', data[0]);
+      dispatch(changeVideoList(data));
+      dispatch(changeVideo(data[0]));
+    });
+  };
+
   //TODO:  Write an asynchronous action to handle a video search!
 };
 
