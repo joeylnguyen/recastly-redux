@@ -13,7 +13,7 @@ var handleVideoSearch = (q) => {
 
   return (dispatch) => {
     searchYouTube({key: YOUTUBE_API_KEY, query: q}, (data) => {
-      // console.log('data:', data[0]);
+      console.log('data:', data[0]);
       dispatch(changeVideoList(data));
       dispatch(changeVideo(data[0]));
     });
