@@ -2,7 +2,7 @@ import searchYouTube from '../lib/searchYouTube.js';
 import changeVideoList from './videoList.js';
 import changeVideo from './currentVideo.js';
 import YOUTUBE_API_KEY from '../config/youtube.js';
-
+import _ from 'lodash';
 
 var handleVideoSearch = (q) => {
   // Return a function that takes dispatch as a parameter
@@ -11,13 +11,12 @@ var handleVideoSearch = (q) => {
   // dispatch currentVideo on data[0]
   // dispatch videoList on data
 
-  return (dispatch) => {
+  return _.debounce((dispatch) => {
     searchYouTube({key: YOUTUBE_API_KEY, query: q}, (data) => {
-      console.log('data:', data[0]);
       dispatch(changeVideoList(data));
       dispatch(changeVideo(data[0]));
     });
-  };
+  }, 500);
 
   //TODO:  Write an asynchronous action to handle a video search!
 };
